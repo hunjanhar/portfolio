@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en" x-data="app()" :class="{'dark':dark}" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Harjinder — Cloud & DevOps Engineer and Full Stack Developer. Building secure, reliable, and scalable production-ready solutions.">
+  <meta name="author" content="Harjinder">
+  <meta property="og:title" content="Harjinder — Cloud & DevOps Engineer and Full Stack Developer">
+  <meta property="og:description"
+    content="I design and build secure, reliable, and scalable production-ready solutions.">
+  <meta property="og:type" content="website">
+  <title>Harjinder — Cloud & DevOps Engineer and Full Stack Developer</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { display: ['PT Sans', 'sans-serif'], body: ['DM Sans', 'sans-serif'] },
+          colors: { accent: '#FF6B2B', 'accent-light': '#FF8F5C' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      font-family: 'DM Sans', sans-serif
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'PT Sans', sans-serif
+    }
+
+    body {
+      transition: background-color .3s, color .3s
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .35;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #FF6B2B;
+      border-radius: 99px
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .6s cubic-bezier(.4, 0, .2, 1), transform .6s cubic-bezier(.4, 0, .2, 1)
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    .d1 {
+      transition-delay: .08s
+    }
+
+    .d2 {
+      transition-delay: .16s
+    }
+
+    .d3 {
+      transition-delay: .24s
+    }
+
+    .d4 {
+      transition-delay: .32s
+    }
+
+    .nl {
+      position: relative
+    }
+
+    .nl::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: currentColor;
+      transition: width .22s cubic-bezier(.4, 0, .2, 1)
+    }
+
+    .nl:hover::after,
+    .nl.on::after {
+      width: 100%
+    }
+
+    .nl.on {
+      font-weight: 500
+    }
+
+    .shimmer {
+      position: relative;
+      overflow: hidden
+    }
+
+    .shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: rgba(255, 255, 255, .18);
+      transform: skewX(-20deg);
+      transition: left .4s cubic-bezier(.4, 0, .2, 1)
+    }
+
+    .shimmer:hover::after {
+      left: 160%
+    }
+
+    .pf {
+      overflow: hidden;
+      background: #d4d4d8
+    }
+
+    .pf img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .card-h {
+      transition: transform .28s cubic-bezier(.4, 0, .2, 1), border-color .18s
+    }
+
+    .card-h:hover {
+      transform: translateY(-4px)
+    }
+
+    .stag {
+      transition: border-color .18s
+    }
+
+    [x-cloak] {
+      display: none !important
+    }
+
+    .role-item-1,
+    .role-item-2 {
+      animation-duration: 5s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      white-space: nowrap;
+    }
+
+    .role-item-1 {
+      animation-name: fade-1;
+    }
+
+    .role-item-2 {
+      animation-name: fade-2;
+    }
+
+    @keyframes fade-1 {
+
+      0%,
+      40% {
+        opacity: 1;
+      }
+
+      50%,
+      95% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade-2 {
+
+      0%,
+      40% {
+        opacity: 0;
+      }
+
+      50%,
+      95% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    [x-cloak] {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased">
+
+  <header class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+    :class="sc?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':''">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+
+      <a href="#hero" class="font-display font-bold text-xl tracking-tight relative z-10">
+        <span class="text-zinc-900 dark:text-white">Harjinder</span>
+      </a>
+
+      <ul class="hidden md:flex items-center gap-8 text-sm" role="list">
+        <li><a href="#hero"
+            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            :class="s==='hero'?'on !text-zinc-900 dark:!text-white':''">Hero</a></li>
+        <li><a href="#about"
+            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            :class="s==='about'?'on !text-zinc-900 dark:!text-white':''">About</a></li>
+        <li><a href="#resume"
+            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            :class="s==='resume'?'on !text-zinc-900 dark:!text-white':''">Resume</a></li>
+        <li><a href="#services"
+            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            :class="s==='services'?'on !text-zinc-900 dark:!text-white':''">Services</a></li>
+        <li><a href="#projects"
+            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            :class="s==='projects'?'on !text-zinc-900 dark:!text-white':''">Projects</a></li>
+        <li><a href="#certificates"
+            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            :class="s==='certificates'?'on !text-zinc-900 dark:!text-white':''">Certifications</a></li>
+        <li><a href="#contact"
+            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            :class="s==='contact'?'on !text-zinc-900 dark:!text-white':''">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <button @click="dark=!dark"
+          class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+          :aria-label="dark?'Light mode':'Dark mode'">
+          <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+          <svg x-show="dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+          </svg>
+        </button>
+        <button @click="mm=!mm"
+          class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800"
+          :aria-expanded="mm" aria-label="Toggle menu">
+          <svg x-show="!mm" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg x-show="mm" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div x-show="mm" x-cloak x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+      x-transition:leave-end="opacity-0 -translate-y-2"
+      class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
+      <ul class="flex flex-col px-6 py-5 gap-4 text-sm font-medium" role="list">
+        <li><a href="#hero" @click="mm=false"
+            class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Hero</a></li>
+        <li><a href="#about" @click="mm=false"
+            class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">About</a></li>
+        <li><a href="#resume" @click="mm=false"
+            class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Resume</a></li>
+        <li><a href="#services" @click="mm=false"
+            class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Services</a></li>
+        <li><a href="#projects" @click="mm=false"
+            class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Projects</a></li>
+        <li><a href="#certificates" @click="mm=false"
+            class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Certifications</a></li>
+        <li><a href="#contact" @click="mm=false"
+            class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+      <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none"
+        aria-hidden="true"></div>
+      <div
+        class="absolute bottom-1/4 left-0 w-64 h-64 bg-zinc-200/50 dark:bg-zinc-800/30 rounded-full blur-3xl pointer-events-none"
+        aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1
+              class="reveal d1 font-display font-bold text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.2] tracking-tight text-zinc-900 dark:text-white">
+              Hi, I'm <span class="text-accent">Harjinder</span><br>
+              <span class="relative inline-block h-[1.2em] align-middle w-full">
+                <span
+                  class="role-item-1 absolute left-0 text-accent whitespace-nowrap text-xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-6xl">Cloud
+                  & DevOps Engineer</span>
+                <span
+                  class="role-item-2 absolute left-0 text-accent whitespace-nowrap text-xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-6xl">Full
+                  Stack Developer</span>
+              </span>
+            </h1>
+            <p
+              class="reveal d2 text-base sm:text-lg md:text-lg lg:text-xl text-zinc-500 dark:text-zinc-400 font-light leading-relaxed max-w-lg mb-10 mt-6 lg:mt-0">
+              <br class="hidden lg:inline">Designing and deploying high-performance cloud environments. Executing
+              reliable, scalable web development
+            </p>
+            <div class="reveal d3 flex flex-wrap gap-4">
+              <a href="#projects"
+                class="shimmer inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium px-7 py-3.5 rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors text-sm">
+                View my work
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+              <a href="#contact"
+                class="inline-flex items-center gap-2 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium px-7 py-3.5 rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-sm">Get
+                in touch</a>
+            </div>
+          </div>
+
+          <div class="reveal d2 flex justify-center lg:justify-end">
+            <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+              <div class="pf w-full h-full rounded-3xl">
+                <img src="assets/images/user.jpg" alt="User image" loading="eager">
+              </div>
+              <div
+                class="absolute -bottom-4 -left-4 bg-accent text-white font-display font-bold text-sm px-4 py-2.5 rounded-2xl shadow-lg">
+                Let's work together</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+
+          <div class="reveal order-2 md:order-1">
+            <div class="pf w-full aspect-square max-w-sm mx-auto rounded-3xl overflow-hidden">
+              <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                <source src="assets/videos/desktop-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <div class="order-1 md:order-2">
+            <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">About me</p>
+            <h2
+              class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white leading-tight mb-6">
+              A bit about<br>who I am
+            </h2>
+            <p class="reveal d2 text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">
+              I'm Harjinder, a Cloud & DevOps Engineer and Developer. I build secure, high-performance cloud
+              infrastructure and power it with scalable web development.
+            </p>
+            <p class="reveal d3 text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8">
+              Specializing in cloud architecture, DevSecOps practices, and GitOps workflows, I automate CI/CD pipelines
+              across modern web stacks (MERN, LAMP, Python) to ensure systems are secure, fast, and built to scale.
+            </p>
+            <div
+              class="reveal d4 grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-zinc-100 dark:border-zinc-800 pt-8">
+              <div>
+                <h4 class="font-bold text-zinc-900 dark:text-white mb-2">Development</h4>
+                <p class="text-sm text-zinc-500 dark:text-zinc-400">MERN Stack, LAMP Stack, Python</p>
+              </div>
+              <div>
+                <h4 class="font-bold text-zinc-900 dark:text-white mb-2">Cloud & Infrastructure</h4>
+                <p class="text-sm text-zinc-500 dark:text-zinc-400">AWS, Azure, Terraform, Ansible</p>
+              </div>
+              <div class="sm:col-span-2">
+                <h4 class="font-bold text-zinc-900 dark:text-white mb-2">DevOps & Automation</h4>
+                <p class="text-sm text-zinc-500 dark:text-zinc-400">CI/CD, Jenkins, GitHub Actions, GitLab-CI,
+                  Kubernetes, Docker,
+                  GitOps, DevSecOps</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" class="py-24 bg-white dark:bg-zinc-950">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Professional Journey</p>
+          <h2 class="reveal font-display font-bold text-3xl md:text-4xl text-zinc-900 dark:text-white mb-4">Resume</h2>
+          <p class="reveal d1 text-zinc-500 dark:text-zinc-400 max-w-lg mx-auto">
+            Academic background and professional journey, evolving from full-stack development to cloud infrastructure.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="space-y-8">
+            <h3 class="text-2xl font-display font-bold text-zinc-900 dark:text-white mb-6">Education</h3>
+
+            <div
+              class="reveal d2 resume-card p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:border-accent transition-colors">
+              <span class="block text-accent font-medium text-sm mb-2">2025 - 2027</span>
+              <h4 class="text-lg font-bold text-zinc-900 dark:text-white">Master of Computer Applications (MCA)</h4>
+              <p class="text-zinc-500 dark:text-zinc-400 font-medium mb-3">Chandigarh Group of Colleges, Landran, Punjab
+              </p>
+              <p class="text-sm text-zinc-500 leading-relaxed">Focusing on advanced Cloud Computing, DevOps
+                architectures, and scalable system design.</p>
+            </div>
+
+            <div
+              class="reveal d3 resume-card p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:border-accent transition-colors">
+              <span class="block text-accent font-medium text-sm mb-2">2022 - 2025</span>
+              <h4 class="text-lg font-bold text-zinc-900 dark:text-white">Bachelor of Computer Applications (BCA)</h4>
+              <p class="text-zinc-500 dark:text-zinc-400 font-medium mb-3">Chandigarh Group of Colleges, Landran, Punjab
+              </p>
+              <p class="text-sm text-zinc-500 leading-relaxed">Built a strong foundation in software development,
+                mastering MERN, LAMP, and Python stacks.</p>
+            </div>
+          </div>
+
+          <div class="space-y-8">
+            <h3 class="text-2xl font-display font-bold text-zinc-900 dark:text-white mb-6">Experience</h3>
+
+            <div
+              class="reveal d4 resume-card p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:border-accent transition-colors">
+              <span class="block text-accent font-medium text-sm mb-2">Jan 2026 - Aug 2026</span>
+              <h4 class="text-lg font-bold text-zinc-900 dark:text-white">Lead Developer: 'R-pind' Project</h4>
+              <p class="text-zinc-500 dark:text-zinc-400 font-medium mb-3">College Capstone Project</p>
+              <p class="text-sm text-zinc-500 leading-relaxed">Developing a comprehensive PHP-based platform to bridge
+                the digital gap for rural villages across Punjab, Haryana, and Himachal Pradesh.</p>
+            </div>
+
+            <div
+              class="reveal d5 resume-card p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:border-accent transition-colors">
+              <span class="block text-accent font-medium text-sm mb-2">June 2024 - July 2024</span>
+              <h4 class="text-lg font-bold text-zinc-900 dark:text-white">Development</h4>
+              <p class="text-zinc-500 dark:text-zinc-400 font-medium mb-3">Software Development Training</p>
+              <p class="text-sm text-zinc-500 leading-relaxed">Intensive training in MERN stack development and backend
+                scripting using Python and PHP.</p>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="mt-16 text-center">
+          <a href="https://drive.google.com/file/d/1hvwXUuqq4fKV7JoL9biw3AYuooKMkGWM/view?usp=sharing" target="_blank"
+            class="inline-flex items-center gap-2 bg-accent text-white font-medium px-8 py-4 rounded-full hover:bg-accent/90 transition-all shadow-lg shadow-accent/20">
+            Download CV
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-14">
+          <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">What I do</p>
+          <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Services</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <article
+            class="reveal d1 card-h group bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div
+              class="w-16 h-16 mb-6 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+              <img src="assets/images/cloud-computing.png" alt="AWS and Azure Cloud" class="w-10 h-10">
+            </div>
+            <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">Cloud Engineering</h3>
+            <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Designing and deploying scalable infrastructure on AWS and Azure, focused on high availability and
+              security.
+            </p>
+          </article>
+
+          <article
+            class="reveal d2 card-h group bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div
+              class="w-16 h-16 mb-6 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+              <img src="assets/images/ci-cd.png" alt="DevOps & CI/CD" class="w-10 h-10">
+            </div>
+            <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">DevOps & Automation</h3>
+            <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Automating CI/CD pipelines and deployment cycles using Jenkins and GitHub Actions for fast, reliable
+              releases.
+            </p>
+          </article>
+
+          <article
+            class="reveal d3 card-h group bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div
+              class="w-16 h-16 mb-6 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+              <img src="assets/images/devsecops.png" alt="DevSecOps" class="w-10 h-10">
+            </div>
+            <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">DevSecOps</h3>
+            <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Embedding automated security checks and continuous vulnerability scanning directly into the CI/CD
+              pipeline.
+            </p>
+          </article>
+
+          <article
+            class="reveal d4 card-h group bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div
+              class="w-16 h-16 mb-6 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
+              <img src="assets/images/developer.png" alt="Full Stack" class="w-10 h-10">
+            </div>
+            <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">Full Stack Development</h3>
+            <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Building responsive web applications using MERN and LAMP stacks, complemented by Python automation.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-white dark:bg-zinc-950">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
+          <div>
+            <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Development</p>
+            <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Projects
+            </h2>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <article
+            class="card-h reveal d1 group rounded-2xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent md:row-span-2">
+            <div class="relative w-full h-64 md:h-80 overflow-hidden" x-data="{ activeSlide: 1 }"
+              x-init="setInterval(() => { activeSlide = activeSlide === 6 ? 1 : activeSlide + 1 }, 3000)">
+              <div x-show="activeSlide === 1" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/news-sphere-app/raw/main/assets/app1.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 2" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/news-sphere-app/raw/main/assets/app2.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 3" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/news-sphere-app/raw/main/assets/app3.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 4" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/news-sphere-app/raw/main/assets/app4.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 5" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/news-sphere-app/raw/main/assets/app5.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 6" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/news-sphere-app/raw/main/assets/app6.png" class="w-full h-full">
+              </div>
+            </div>
+            <div class="p-7">
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">AWS</span>
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">GitOps</span>
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">DevSecOps</span>
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">Kubernetes</span>
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">Terraform</span>
+                <span
+                  class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Ansible</span>
+                <span
+                  class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Jenkins</span>
+              </div>
+
+              <h3 class="font-display font-bold text-2xl text-zinc-900 dark:text-white mb-2">NewsSphere</h3>
+
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+                NewsSphere is a high-impact enterprise cloud-native platform engineered on AWS around a resilient,
+                production-grade Kubernetes architecture. Built strictly on an Infrastructure as Code (IaC) foundation,
+                the underlying cloud network topology—including custom AWS VPC isolation, security groups, IAM roles,
+                and compute nodes—is programmatically provisioned using Terraform and automated with Ansible. Continuous
+                deployment is driven by modern GitOps workflows powered by ArgoCD, guaranteeing zero-downtime rolling
+                updates, declarative state management, and instant reconciliation between Git repositories and live
+                cloud clusters.
+              </p>
+
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+                To guarantee maximum reliability and continuous compliance, DevSecOps principles and cloud observability
+                are embedded directly into the delivery pipeline. Automated build stages enforce strict pre-deployment
+                security testing by pairing container image vulnerability scans via Trivy with static application
+                security testing (SAST) through SonarQube. Operating alongside this pipeline, a complete monitoring
+                stack powered by Prometheus and Grafana delivers real-time cluster telemetry, custom metric dashboards,
+                and automated incident alerting for system anomalies.
+              </p>
+
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+                At the application development layer, NewsSphere features a robust full-stack MERN architecture (React,
+                Node.js, Express, and MongoDB Atlas) integrated with high-speed Redis caching. This setup handles heavy
+                real-time data ingestion streams from external news APIs, dramatically reducing latency, optimizing
+                cloud compute utilization, and providing an end-to-end scalable experience for peak user traffic.
+              </p>
+
+              <a href="https://github.com/hunjanhar/news-sphere-app" target="_blank"
+                class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nl">
+                View on GitHub
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="card-h reveal d2 group rounded-2xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div class="relative w-full h-64 md:h-80 overflow-hidden" x-data="{ activeSlide: 1 }"
+              x-init="setInterval(() => { activeSlide = activeSlide === 4 ? 1 : activeSlide + 1 }, 4000)">
+
+              <div x-show="activeSlide === 1" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/code-byte/raw/main/assets/app1.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 2" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/code-byte/raw/main/assets/app2.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 3" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/code-byte/raw/main/assets/app3.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 4" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/code-byte/raw/main/assets/app4.png" class="w-full h-full">
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">AWS</span>
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">AWS
+                  RDS</span>
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">PHP</span>
+                <span
+                  class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Terraform</span>
+                <span
+                  class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">GitHub</span>
+              </div>
+
+              <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-1.5">Code-Byte</h3>
+
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">
+                A PHP developer platform built with LAMP architecture and deployed on AWS. Combines web development with
+                automated cloud infrastructure using AWS RDS for database management and Terraform provisioning.
+              </p>
+
+              <a href="https://github.com/hunjanhar/code-byte" target="_blank"
+                class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nl">
+                View on GitHub →
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="card-h reveal d3 group rounded-2xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div class="relative w-full h-64 md:h-80 overflow-hidden" x-data="{ activeSlide: 1 }"
+              x-init="setInterval(() => { activeSlide = activeSlide === 3 ? 1 : activeSlide + 1 }, 5000)">
+
+              <div x-show="activeSlide === 1" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/blog-application/raw/main/assets/app1.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 2" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/blog-application/raw/main/assets/app2.png" class="w-full h-full">
+              </div>
+              <div x-show="activeSlide === 3" x-transition:enter="transition-opacity ease-in-out duration-1000"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity ease-in-out duration-1000" x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <img src="https://github.com/hunjanhar/blog-application/raw/main/assets/app3.png" class="w-full h-full">
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">AWS</span>
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">Kubernetes</span>
+                <span
+                  class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">Docker</span>
+                <span
+                  class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">GitHub
+                  Actions</span>
+                <span
+                  class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Monitoring</span>
+              </div>
+
+              <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-1.5">Blog Application</h3>
+
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">
+                A high-performance blog platform deployed on AWS using containerized microservices and automated
+                Kubernetes cluster management. Integrates custom web development with continuous delivery pipelines and
+                real-time operational monitoring.
+              </p>
+
+              <a href="https://github.com/hunjanhar/blog-application" target="_blank"
+                class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nl">
+                View on GitHub →
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates" class="py-24 bg-zinc-50 dark:bg-zinc-900/40 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-6">
+
+        <div class="mb-12">
+          <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Verified Skills</p>
+          <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Certifications
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <a href="https://www.credly.com/badges/062a2f9d-6591-4478-b8d1-59beab3b676b/public_url" target="_blank"
+            rel="noopener noreferrer"
+            class="group bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 flex flex-col justify-between shadow-sm hover:border-accent dark:hover:border-accent hover:-translate-y-1 transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-16 h-16 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0 border border-zinc-200/50 dark:border-zinc-700/50">
+                <img src="https://images.credly.com/size/110x110/images/b6b54bbe-b797-49a3-b571-58ca96328b9b/blob"
+                  alt="AWS" class="w-12 h-12 object-contain group-hover:scale-105 transition-transform">
+              </div>
+              <div>
+                <span class="inline-block text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mb-1">Amazon Web
+                  Services</span>
+                <h4 class="font-display font-bold text-sm text-zinc-900 dark:text-white leading-snug">AWS SimuLearn -
+                  Cloud Practitioner - Training Badge</h4>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between">
+              <span class="text-xs font-semibold text-accent">Verify Credentials</span>
+              <span class="text-xs text-zinc-400 group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </div>
+          </a>
+
+          <a href="https://www.credly.com/badges/57dd8207-ece0-4e82-bb14-3a6d5e0e0a68/public_url" target="_blank"
+            rel="noopener noreferrer"
+            class="group bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 flex flex-col justify-between shadow-sm hover:border-accent dark:hover:border-accent hover:-translate-y-1 transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-16 h-16 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0 border border-zinc-200/50 dark:border-zinc-700/50">
+                <img src="https://images.credly.com/size/80x80/images/30816e43-2550-4e1c-be22-3f03c5573bb9/blob"
+                  alt="Kubernetes" class="w-12 h-12 object-contain group-hover:scale-105 transition-transform">
+              </div>
+              <div>
+                <span class="inline-block text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mb-1">Amazon Web
+                  Services</span>
+                <h4 class="font-display font-bold text-sm text-zinc-900 dark:text-white leading-snug">AWS Cloud Quest:
+                  Cloud Practitioner - Training Badge</h4>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between">
+              <span class="text-xs font-semibold text-accent">Verify Credentials</span>
+              <span class="text-xs text-zinc-400 group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </div>
+          </a>
+
+          <a href="https://www.credly.com/badges/ae4d82e5-c13a-4db9-b21d-225aed27703f/public_url" target="_blank"
+            rel="noopener noreferrer"
+            class="group bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 flex flex-col justify-between shadow-sm hover:border-accent dark:hover:border-accent hover:-translate-y-1 transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-16 h-16 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0 border border-zinc-200/50 dark:border-zinc-700/50">
+                <img src="https://images.credly.com/size/80x80/images/e51a8579-188d-4363-8ed1-12ad164ef57b/blob"
+                  alt="DevOps" class="w-12 h-12 object-contain group-hover:scale-105 transition-transform">
+              </div>
+              <div>
+                <span class="inline-block text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mb-1">Amazon Web
+                  Services</span>
+                <h4 class="font-display font-bold text-sm text-zinc-900 dark:text-white leading-snug">AWS Educate
+                  Introduction to Cloud 101 - Training Badge</h4>
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between">
+              <span class="text-xs font-semibold text-accent">Verify Credentials</span>
+              <span class="text-xs text-zinc-400 group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-16 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+            aria-hidden="true"></div>
+          <div class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+            aria-hidden="true"></div>
+
+          <div class="relative z-10 grid md:grid-cols-2 gap-12 items-start">
+
+            <div>
+              <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Get in touch</p>
+              <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-5">Let's
+                work<br>together</h2>
+              <p class="reveal d2 text-zinc-400 leading-relaxed mb-8">
+                Available for Cloud, DevOps, and Full-Stack development projects. Specializing in scalable AWS & Azure cloud
+                infrastructure, automated CI/CD pipelines, and high-performance web applications. Let's
+                collaborate to build reliable, production-ready systems.
+              </p>
+              <div class="reveal d3 flex flex-col gap-4">
+                <a href="mailto:harjinderhunjan44@gmail.com"
+                  class="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors">
+                  <span
+                    class="w-9 h-9 flex items-center justify-center bg-zinc-800 rounded-lg group-hover:bg-accent/20 transition-colors shrink-0">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  <span class="text-sm">harjinderhunjan44@gmail.com</span>
+                </a>
+                <a href="https://in.linkedin.com/in/harjinder-singh-b492a337a" rel="noopener noreferrer" target="_blank"
+                  class="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors">
+                  <span
+                    class="w-9 h-9 flex items-center justify-center bg-zinc-800 rounded-lg group-hover:bg-accent/20 transition-colors shrink-0">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </span>
+                  <span class="text-sm">Harjinder Singh</span>
+                </a>
+                <a href="https://github.com/hunjanhar" rel="noopener noreferrer" target="_blank"
+                  class="group flex items-center gap-3 text-zinc-400 hover:text-white transition-colors">
+                  <span
+                    class="w-9 h-9 flex items-center justify-center bg-zinc-800 rounded-lg group-hover:bg-accent/20 transition-colors shrink-0">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                  </span>
+                  <span class="text-sm">hunjanhar</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="reveal d2">
+              <form id="contact-form">
+                <div class="flex flex-col gap-4">
+                  <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label for="fname" class="block text-xs font-medium text-zinc-400 mb-1.5">Name <span
+                          aria-hidden="true">*</span></label>
+                      <input type="text" required id="fname" name="name" placeholder="Jane Smith" required
+                        autocomplete="name"
+                        class="w-full bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-4 py-3 placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors">
+                    </div>
+                    <div>
+                      <label for="femail" class="block text-xs font-medium text-zinc-400 mb-1.5">Email <span
+                          aria-hidden="true">*</span></label>
+                      <input type="email" required id="femail" name="email" placeholder="jane@company.com" required
+                        autocomplete="email"
+                        class="w-full bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-4 py-3 placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors">
+                    </div>
+                  </div>
+                  <div>
+                    <label for="fsubject" class="block text-xs font-medium text-zinc-400 mb-1.5">Subject</label>
+                    <input type="text" required id="fsubject" name="subject" placeholder="Project inquiry"
+                      class="w-full bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-4 py-3 placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors">
+                  </div>
+                  <div>
+                    <label for="fmessage" class="block text-xs font-medium text-zinc-400 mb-1.5">Message <span
+                        aria-hidden="true">*</span></label>
+                    <textarea id="fmessage" name="message" rows="4" placeholder="Tell me about your project..." required
+                      class="w-full bg-zinc-800 border border-zinc-700 text-white text-sm rounded-xl px-4 py-3 placeholder-zinc-600 focus:outline-none focus:border-accent transition-colors resize-none"></textarea>
+                  </div>
+                  <button type="submit" id="submit-button"
+                    class="shimmer w-full bg-accent text-white font-display font-bold text-sm py-3.5 rounded-xl hover:bg-accent-light transition-colors">
+                    Send message →
+                  </button>
+                </div>
+                <div id="result" class="mt-4 text-center transition-all duration-300"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-zinc-100 dark:border-zinc-900">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-zinc-400">© <span id="yr"></span> Harjinder. All rights reserved. </p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+
+</body>
+
+</html>
